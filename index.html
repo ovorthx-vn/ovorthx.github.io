@@ -6,7 +6,6 @@
     <title>Xin chào | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- Sử dụng Google Fonts cho Press Start 2P để đơn giản, hoặc có thể tải về và dùng local -->
 </head>
 <body>
     <div class="background-blur" style="background-image: url('./assets/background.jpg');"></div>
@@ -15,17 +14,18 @@
             <span class="dot red"></span>
             <span class="dot yellow"></span>
             <span class="dot green"></span>
-            <span class="title">Arch Linux Terminal</span>
+            <span class="title">user@arch: ~</span> <!-- Đổi tiêu đề cho giống terminal hơn -->
         </div>
         <div class="terminal-content">
-            <pre id="terminal-text" class="typed-text"></pre>
-            <div id="platform-selection" class="hidden">
-                <div class="platform-option" data-platform="pc">
-                    <span class="icon">💻</span> PC
-                </div>
-                <div class="platform-option" data-platform="mobile">
-                    <span class="icon">📱</span> Mobile
-                </div>
+            <div id="terminal-output"></div> <!-- Đây là nơi nội dung sẽ được gõ -->
+            <span id="terminal-cursor">_</span> <!-- Con trỏ nhấp nháy -->
+        </div>
+        <div id="platform-selection" class="hidden">
+            <div class="platform-option" data-platform="pc">
+                <span class="icon">💻</span> PC
+            </div>
+            <div class="platform-option" data-platform="mobile">
+                <span class="icon">📱</span> Mobile
             </div>
         </div>
     </div>
