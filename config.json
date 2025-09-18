@@ -1,26 +1,57 @@
 {
   "terminal": {
-    "messages": [
+    "welcome_messages": [
       "HELLO WORLD",
       "I know what you are looking for",
       "Select your platform below"
+    ],
+    "arch_simulation": [
+      { "type": "prompt", "text": "~ $ neofetch" },
+      { "type": "output", "text": "                  _              _           " },
+      { "type": "output", "text": "                 U       r r c h       U       " },
+      { "type": "output", "text": "                _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ " },
+      { "type": "output", "text": "                                               " },
+      { "type": "output", "text": "       _   _    _    _   _   _   _   _        _ _ _ _ _ _ _ _ _ _ _ " },
+      { "type": "output", "text": "      '       r r c h'         O S: Arch Linux x86_64" },
+      { "type": "output", "text": "        _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ Kernel: 4.20.7-arch1-1-ARCH" },
+      { "type": "output", "text": "                                      Uptime: 4 hours, 39 mins" },
+      { "type": "output", "text": "                                      Packages: 763 (pacman)" },
+      { "type": "output", "text": "                                      Shell: bash 5.0.0" },
+      { "type": "output", "text": "                                      DE: KDE" },
+      { "type": "output", "text": "                                      WM: Kwin" },
+      { "type": "output", "text": "                                      WM Theme: sierrabreeze" },
+      { "type": "output", "text": "                                      Theme: Breeze Dark [KDE], Breeze-Dark [GTK2/3]" },
+      { "type": "output", "text": "                                      Icons: la-capitaine-icon-theme [KDE], breeze [GTK2/3]" },
+      { "type": "output", "text": "                                      Terminal: konsole" },
+      { "type": "output", "text": "                                      CPU: Intel i3-6100 (4) @ 3.700GHz" },
+      { "type": "output", "text": "                                      GPU: Intel HD Graphics 530" },
+      { "type": "output", "text": "                                      Memory: 2273MiB / 7856MiB" },
+      { "type": "output", "text": "" },
+      { "type": "output", "text": "          █████████████████████████████████████████████████" },
+      { "type": "output", "text": "          █████████████████████████████████████████████████" },
+      { "type": "output", "text": "          █████████████████████████████████████████████████" },
+      { "type": "output", "text": "" },
+      { "type": "prompt", "text": "~ $ " },
+      { "type": "output", "text": "HELLO WORLD" },
+      { "type": "output", "text": "I know what you are looking for" },
+      { "type": "output", "text": "Select your platform below" }
     ]
   },
   "pages": {
-    "project": "Danh sách dự án sẽ hiển thị ở đây. Bao gồm mô tả ngắn, công nghệ sử dụng, và link GitHub/demo.",
-    "cve": "Thông tin về các lỗ hổng bảo mật (CVE) cá nhân mà tôi đã tìm thấy và công bố.",
-    "prize": "Các giải thưởng, thành tích học tập và chuyên môn đã đạt được.",
-    "blog": "Chia sẻ kiến thức, kinh nghiệm, và những suy nghĩ cá nhân về công nghệ, lập trình và các chủ đề khác.",
+    "project": "...",
+    "cve": "...",
+    "prize": "...",
+    "blog": "...",
     "contact": {
       "email": "your_email@example.com",
       "discord": "your_discord_id",
       "github": "your_github_username"
     },
-    "me": "Chào bạn! Tôi là [Tên của bạn], một nhà phát triển phần mềm / chuyên gia bảo mật với niềm đam mê tạo ra các giải pháp sáng tạo và an toàn. Tôi chuyên về [lĩnh vực của bạn] và luôn tìm kiếm những thử thách mới.",
+    "me": "...",
     "social": {
-      "linkedin": "https://linkedin.com/in/your_linkedin",
-      "twitter": "https://twitter.com/your_twitter",
-      "facebook": "https://facebook.com/your_facebook"
+      "linkedin": "...",
+      "twitter": "...",
+      "facebook": "..."
     }
   }
 }
