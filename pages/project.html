@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án của tôi</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Quay lại thư mục gốc để lấy style.css -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body class="detail-page">
+    <div class="content-wrapper">
+        <a href="../universe.html" class="back-button">← Quay lại</a>
+        <h1>Dự án của tôi</h1>
+        <p id="project-content"></p>
+        <!-- Thêm các dự án cụ thể ở đây -->
+    </div>
+    <script>
+        fetch('../config.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('project-content').innerText = data.pages.project;
+            })
+            .catch(error => console.error('Error loading config.json:', error));
+    </script>
+</body>
+</html>
