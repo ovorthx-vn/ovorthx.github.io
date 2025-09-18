@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', onDocumentClick);
     }
 
+    // Hàm createWindows giờ nhận thêm tham số font
     function createWindows(font) {
         const windowData = [
             { name: 'Project', size: 'large', position: { x: -3, y: 1, z: 0 }, url: 'pages/project.html' },
@@ -87,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 shininess: 50,
                 specular: 0x222222,
                 transparent: true,
-                opacity: 0.8
+                opacity: 0.8,
+                side: THREE.DoubleSide // Đảm bảo vật liệu render cả 2 mặt
             });
 
             const windowMesh = new THREE.Mesh(geometry, material);
@@ -96,23 +98,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: data.name,
                 url: data.url,
                 isLarge: data.size === 'large'
-            }; // Lưu trữ thông tin cho tương tác
+            };
 
-            // Thêm text label vào cửa sổ
-            const loader = new THREE.FontLoader();
-            loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+            // Chỉ thêm text nếu font được tải thành công
+            if (font) {
                 const textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // Màu xanh lá
                 const textGeometry = new THREE.TextGeometry(data.name, {
                     font: font,
                     size: data.size === 'large' ? 0.2 : 0.15,
-                    height: 0.05
+                    height: 0.02, // Giảm chiều sâu của text để đỡ nặng
+                    curveSegments: 12
                 });
                 textGeometry.computeBoundingBox();
                 const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
                 const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-                textMesh.position.set(centerOffset, data.size === 'large' ? -0.05 : -0.02, 0.06); // Đặt hơi phía trước mặt cửa sổ
+                textMesh.position.set(centerOffset, 0, 0.06); // Đặt hơi phía trước mặt cửa sổ
                 windowMesh.add(textMesh);
-            });
+            }
 
             scene.add(windowMesh);
             objects.push(windowMesh);
@@ -125,6 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onDocumentClick(event) {
+        // Ngăn chặn hành vi mặc định (nếu có)
+        event.preventDefault();
+
         // Raycasting để phát hiện click vào đối tượng 3D
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2(
@@ -146,13 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = url;
             } else if (!isLarge) {
                 // Hiển thị placeholder content cho cửa sổ nhỏ
-                alert(`Content for ${name}:\n\n${config[name.toLowerCase()]}`);
+                if (name === 'Contact') {
+                    alert(`Contact Me:\nEmail: ${config.contact.email}\nDiscord: ${config.contact.discord}\nGitHub: ${config.contact.github}`);
+                } else if (name === 'Social') {
+                    alert(`My Socials:\nLinkedIn: ${config.social.linkedin}\nTwitter: ${config.social.twitter}\nFacebook: ${config.social.facebook}`);
+                }
             } else if (name === 'Me') {
                 alert(`About Me:\n\n${config.me}`);
-            } else if (name === 'Contact') {
-                 alert(`Contact Me:\nEmail: ${config.contact.email}\nDiscord: ${config.contact.discord}\nGitHub: ${config.contact.github}`);
-            } else if (name === 'Social') {
-                 alert(`My Socials:\nLinkedIn: ${config.social.linkedin}\nTwitter: ${config.social.twitter}\nFacebook: ${config.social.facebook}`);
             }
         }
     }
@@ -170,14 +175,17 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
 
         // Camera rotation based on mouse position
-        camera.position.x += (mouseX * 0.0005 - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY * 0.0005 - camera.position.y) * 0.05;
+        // Giảm hệ số để camera di chuyển mượt và ít hơn
+        camera.position.x += (mouseX * 0.0001 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 0.0001 - camera.position.y) * 0.05;
         camera.lookAt(scene.position); // Luôn nhìn về trung tâm scene
 
         // Rotate objects slightly
-        objects.forEach(obj => {
-            obj.rotation.y += 0.001; // Quay nhẹ quanh trục Y
-            obj.rotation.x += 0.0005; // Quay nhẹ quanh trục X
+        const time = Date.now() * 0.0001;
+        objects.forEach((obj, index) => {
+            // Tạo chuyển động lượn sóng nhẹ nhàng
+            obj.position.y += Math.sin(time + index * 2) * 0.001;
+            obj.rotation.y = time * 0.5; // Các cửa sổ sẽ quay đồng bộ
         });
 
         renderer.render(scene, camera);
