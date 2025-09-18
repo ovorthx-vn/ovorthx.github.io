@@ -1,0 +1,26 @@
+{
+  "terminal": {
+    "messages": [
+      "HELLO WORLD",
+      "I know what you are looking for",
+      "Select your platform below"
+    ]
+  },
+  "pages": {
+    "project": "Danh sách dự án sẽ hiển thị ở đây. Bao gồm mô tả ngắn, công nghệ sử dụng, và link GitHub/demo.",
+    "cve": "Thông tin về các lỗ hổng bảo mật (CVE) cá nhân mà tôi đã tìm thấy và công bố.",
+    "prize": "Các giải thưởng, thành tích học tập và chuyên môn đã đạt được.",
+    "blog": "Chia sẻ kiến thức, kinh nghiệm, và những suy nghĩ cá nhân về công nghệ, lập trình và các chủ đề khác.",
+    "contact": {
+      "email": "your_email@example.com",
+      "discord": "your_discord_id",
+      "github": "your_github_username"
+    },
+    "me": "Chào bạn! Tôi là [Tên của bạn], một nhà phát triển phần mềm / chuyên gia bảo mật với niềm đam mê tạo ra các giải pháp sáng tạo và an toàn. Tôi chuyên về [lĩnh vực của bạn] và luôn tìm kiếm những thử thách mới.",
+    "social": {
+      "linkedin": "https://linkedin.com/in/your_linkedin",
+      "twitter": "https://twitter.com/your_twitter",
+      "facebook": "https://facebook.com/your_facebook"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xin chào | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Sử dụng Google Fonts cho Press Start 2P để đơn giản, hoặc có thể tải về và dùng local -->
+</head>
+<body>
+    <div class="background-blur" style="background-image: url('./assets/background.jpg');"></div>
+    <div class="terminal-overlay">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">Arch Linux Terminal</span>
+        </div>
+        <div class="terminal-content">
+            <pre id="terminal-text" class="typed-text"></pre>
+            <div id="platform-selection" class="hidden">
+                <div class="platform-option" data-platform="pc">
+                    <span class="icon">💻</span> PC
+                </div>
+                <div class="platform-option" data-platform="mobile">
+                    <span class="icon">📱</span> Mobile
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
