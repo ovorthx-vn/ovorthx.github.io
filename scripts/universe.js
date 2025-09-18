@@ -1,42 +1,39 @@
 // scripts/universe.js
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.module.min.js';
-// Hoặc nếu tải Three.js về local: import * as THREE from './three.module.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('three-container');
     let scene, camera, renderer;
-    let objects = []; // Mảng chứa các đối tượng (cửa sổ)
+    let objects = [];
     let mouseX = 0, mouseY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
 
-    const config = {}; // Sẽ tải từ config.json
+    const config = {};
 
-    // Fetch config data
     fetch('config.json')
         .then(response => response.json())
         .then(data => {
-            Object.assign(config, data.pages); // Lấy phần pages từ config
+            Object.assign(config, data.pages);
             init();
             animate();
         })
-        .catch(error => console.error('Error loading config.json:', error));
+        .catch(error => {
+            console.error('Error loading config.json:', error);
+            container.innerHTML = "<p style='color: white; text-align: center; margin-top: 50px;'>Error loading portfolio data.</p>";
+        });
 
     function init() {
-        // Scene
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000); // Nền đen
+        scene.background = new THREE.Color(0x000000);
 
-        // Camera
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
 
-        // Renderer
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 
-        // Stars (chấm trắng)
         const starGeometry = new THREE.BufferGeometry();
         const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
         const starVertices = [];
@@ -50,23 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
 
-        // Create Windows
-        createWindows();
+        // --- Cập nhật đường dẫn font ở đây ---
+        const loader = new THREE.FontLoader();
+        loader.load('../fonts/helvetiker_regular.typeface.json', function (font) { // Đường dẫn tương đối từ scripts/universe.js
+            createWindows(font); // Truyền font vào hàm tạo cửa sổ
+        }, undefined, function (error) {
+            console.error('An error occurred loading the font:', error);
+            // Fallback: Tạo cửa sổ không có text nếu font lỗi
+            createWindows(null);
+        });
+        // ------------------------------------
 
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0x404040, 2); // soft white light
+        const ambientLight = new THREE.AmbientLight(0x404040, 2);
         scene.add(ambientLight);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight.position.set(0, 1, 0);
         scene.add(directionalLight);
 
-        // Event Listeners
         document.addEventListener('mousemove', onDocumentMouseMove);
         window.addEventListener('resize', onWindowResize);
-        document.addEventListener('click', onDocumentClick); // Xử lý click trên cửa sổ
+        document.addEventListener('click', onDocumentClick);
     }
 
-    function createWindows() {
+    function createWindows(font) {
         const windowData = [
             { name: 'Project', size: 'large', position: { x: -3, y: 1, z: 0 }, url: 'pages/project.html' },
             { name: 'CVE', size: 'large', position: { x: -3, y: -1.5, z: 0 }, url: 'pages/cve.html' },
