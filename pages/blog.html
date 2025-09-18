@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog của tôi</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start2P&display=swap" rel="stylesheet">
+</head>
+<body class="detail-page">
+    <div class="content-wrapper">
+        <a href="../universe.html" class="back-button">← Quay lại</a>
+        <h1>Blog</h1>
+        <p id="blog-content"></p>
+        <!-- Thêm danh sách bài viết blog cụ thể ở đây -->
+    </div>
+    <script>
+        fetch('../config.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('blog-content').innerText = data.pages.blog;
+            })
+            .catch(error => console.error('Error loading config.json:', error));
+    </script>
+</body>
+</html>
